@@ -4,6 +4,8 @@
 name: Java CI with MVN
 
 on:
+  push:
+    branches: [ master ]
   schedule:
       - cron: '* * * * *'
 
