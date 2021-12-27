@@ -24,3 +24,11 @@ jobs:
 
       - name: Build with MVN
         run: mvn --batch-mode --update-snapshots verify
+
+      - name: Build and Push Docker Image
+          uses: mr-smithers-excellent/docker-build-push@v4
+          with:
+            image: vccran/sample-github-actions
+            registry: docker.io
+            username: ${{ secrets.DOCKER_USERNAME }}
+            password: ${{ secrets.DOCKER_PASSWORD }}
