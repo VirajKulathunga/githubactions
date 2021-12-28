@@ -4,7 +4,6 @@
 name: Java CI with MVN
 
 on:
-  workflow-dispatch:
   workflow_run:
     workflows: [ "Build" ]
     types: [ completed ]
@@ -12,8 +11,6 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-  schedule:
-    - cron: '* * * * *'
 
 jobs:
   build-java:
