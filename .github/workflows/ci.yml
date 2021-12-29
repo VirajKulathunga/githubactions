@@ -4,9 +4,6 @@
 name: CI
 
 on:
-  strategy:
-    matrix:
-      workflow: ["Build","Deploy"]
   workflow_run:
     workflows: ${{ matrix.workflow }}
     types:
@@ -14,6 +11,9 @@ on:
 
 jobs:
   build-java:
+    strategy:
+      matrix:
+        workflow: ["Build","Deploy"]
 
     runs-on: ubuntu-latest
 
