@@ -1,12 +1,11 @@
 # This workflow will build a Java project with Gradle
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
 
-name: Github Manual Workflow
+name: Build
 
 on:
-
-    workflows: [ "Build" ]
-    types: [ completed ]
+  push:
+    branches: [ master ]
 
 jobs:
   build-java:
@@ -32,27 +31,3 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           tags: vccran/sample-github-actions:build
-
-  deploy-java:
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up JAVA 11
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-
-      - name: Build with MVN
-        run: mvn --batch-mode --update-snapshots verify
-
-      - name: Build and Push Docker Image
-        uses: mr-smithers-excellent/docker-build-push@v4
-        with:
-          image: vccran/sample-github-actions
-          registry: docker.io
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          tags: vccran/sample-github-actions:deploy
