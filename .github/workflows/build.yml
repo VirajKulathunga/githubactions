@@ -4,11 +4,11 @@
 name: Build
 
 on:
-  push:
-    branches: [ master ]
+  workflows: [ "Build" ]
+  types: [ completed ]
 
 jobs:
-  build-java-build-yml:
+  build-javax:
 
     runs-on: ubuntu-latest
 

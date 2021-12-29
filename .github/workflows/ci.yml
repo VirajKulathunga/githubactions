@@ -4,7 +4,6 @@
 name: Github Manual Workflow
 
 on:
-
     workflows: [ "Build" ]
     types: [ completed ]
 
