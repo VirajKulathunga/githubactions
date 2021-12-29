@@ -4,8 +4,12 @@
 name: Deploy
 
 on:
-  workflows: [ "Build" ]
-  types: [ completed ]
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Build"]
+    branches: [master]
+    types:
+      - completed
 
 jobs:
   build-java:
