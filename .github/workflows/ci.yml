@@ -5,15 +5,12 @@ name: CI
 
 on:
   workflow_run:
-    workflows: ${{ matrix.workflow }}
+    workflows: ["Build","Deploy"]
     types:
       - completed
 
 jobs:
   build-java:
-    strategy:
-      matrix:
-        workflow: ["Build","Deploy"]
 
     runs-on: ubuntu-latest
 
@@ -24,8 +21,7 @@ jobs:
           echo "$GITHUB_REF_NAME"
           echo "$GITHUB_WORKFLOW"
           echo "$GITHUB_EVENT_NAME"
-          echo "${{ matrix.workflow }}"
-          echo "$MATRIX.WORKFLOW"
+          echo "${{ github.head_ref }}"
 
       - uses: actions/checkout@v2
 
