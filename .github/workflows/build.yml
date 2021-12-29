@@ -4,8 +4,10 @@
 name: Build
 
 on:
-  workflows: [ "Build" ]
-  types: [ completed ]
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   build-javax:
