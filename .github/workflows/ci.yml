@@ -21,10 +21,10 @@ jobs:
           echo "$GITHUB_REF_NAME"
           echo "$GITHUB_WORKFLOW"
           echo "$GITHUB_EVENT_NAME"
-          echo "$GITHUB.EVENT.WORKFLOW_RUN"
-          echo "$GITHUB.EVENT.WORKFLOW_RUN.CONCLUSION"
-          echo "$GITHUB.EVENT.WORKFLOW_RUN.WORKFLOW"
-          echo "$GITHUB.EVENT.WORKFLOW_RUN.WORKFLOWS"
+          echo "$GITHUB_EVENT_WORKFLOW_RUN"
+          echo "$GITHUB_EVENT_WORKFLOW_RUN_CONCLUSION"
+          echo "$GITHUB_EVENT_WORKFLOW_RUN_WORKFLOW"
+          echo "$GITHUB_EVENT_WORKFLOW_RUN_WORKFLOWS"
 
       - uses: actions/checkout@v2
 
