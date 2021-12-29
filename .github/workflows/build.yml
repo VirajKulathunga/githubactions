@@ -15,6 +15,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Build with MVN
+        run: |
+          echo "$GITHUB_CONTEXT"
+          echo "$github.ref"
+          echo "$GITHUB_REF"
+          echo "$github.event.workflow_run.conclusion"
+          echo "$GITHUB_EVENT_NAME"
+
       - uses: actions/checkout@v2
 
       - name: Set up JAVA 11
