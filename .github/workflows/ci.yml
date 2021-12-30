@@ -4,14 +4,40 @@
 name: CI
 
 on:
+  schedule:
+    - cron: '* * * * *'
   workflow_run:
     workflows: ["Build","Deploy"]
     types:
       - completed
 
 jobs:
-  build-java:
+  pre-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build IF
+        if: |-
+            !(github.event_name == 'workflow_run' && github.event.workflow_run.name == 'Build')
+          env:
+            VCCRAN: 'Build'
 
+      - name: Deploy IF
+          if: |-
+            !(github.event_name == 'workflow_run' && github.event.workflow_run.name == 'Deploy')
+            env:
+            VCCRAN: 'Deploy'
+
+      - name: Print Log
+        run: |
+          echo "$VCCRAN"
+          echo ${{ VCCRAN }}
+          echo "event name is:" ${{ github.event_name }}
+          echo "event type is:" ${{ github.event.action }}
+          echo "event workflow_run event is:" ${{ github.event.workflow_run.event }}
+          echo "event workflow_run name is:" ${{ github.event.workflow_run.name }}
+          echo "event schedule name is:" ${{ github.event.schedule.name }}
+
+  build-java:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,6 +51,7 @@ jobs:
           echo "event type is:" ${{ github.event.action }}
           echo "event workflow_run event is:" ${{ github.event.workflow_run.event }}
           echo "event workflow_run name is:" ${{ github.event.workflow_run.name }}
+          echo "event schedule name is:" ${{ github.event.schedule.name }}
 
       - uses: actions/checkout@v2
 
