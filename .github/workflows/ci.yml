@@ -20,16 +20,22 @@ jobs:
         if: (github.event_name == 'workflow_run' && github.event.workflow_run.name == 'Build')
         env:
           VCCRAN: 'Build'
+        run: |
+          echo "$VCCRAN"
+          echo ${{ VCCRAN }}
 
       - name: Deploy IF
         if: (github.event_name == 'workflow_run' && github.event.workflow_run.name == 'Deploy')
         env:
           VCCRAN: 'Deploy'
-
-      - name: Print Log
         run: |
           echo "$VCCRAN"
           echo ${{ VCCRAN }}
+
+      - name: Print Log
+        run: |
+          echo "VCCRAN name is: $VCCRAN"
+          echo "VCCRAN name is:" ${{ VCCRAN }}
           echo "event name is:" ${{ github.event_name }}
           echo "event type is:" ${{ github.event.action }}
           echo "event workflow_run event is:" ${{ github.event.workflow_run.event }}
