@@ -17,14 +17,12 @@ jobs:
 
     steps:
       - name: Build IF
-        if: |-
-            !(github.event_name == 'workflow_run' && github.event.workflow_run.name == 'Build')
+        if: (github.event_name == 'workflow_run' && github.event.workflow_run.name == 'Build')
         env:
           VCCRAN: 'Build'
 
       - name: Deploy IF
-          if: |-
-            !(github.event_name == 'workflow_run' && github.event.workflow_run.name == 'Deploy')
+          if: (github.event_name == 'workflow_run' && github.event.workflow_run.name == 'Deploy')
           env:
             VCCRAN: 'Deploy'
 
