@@ -15,23 +15,23 @@ jobs:
   pre-build:
     runs-on: ubuntu-latest
     outputs:
-      VCCRAN1: ${{steps.buildif.outputs.VCCRAN}}
-      VCCRAN2: ${{steps.deployif.outputs.VCCRAN}}
+      VCCRAN1: ${{ steps.buildif.outputs.VCCRAN }}
+      VCCRAN2: ${{ steps.deployif.outputs.VCCRAN }}
     steps:
       - id: buildif
         if: (github.event_name == 'workflow_run' && github.event.workflow_run.name == 'Build')
         run: |
-          echo "::set-output name=VCCRAN::Build
+          echo "::set-output name=VCCRAN::Build"
 
       - id: deployif
         if: (github.event_name == 'workflow_run' && github.event.workflow_run.name == 'Deploy')
         run: |
-          echo "::set-output name=VCCRAN::Deploy
+          echo "::set-output name=VCCRAN::Deploy"
 
       - name: Print Log
         run: |
-          echo ${{steps.buildif.outputs.VCCRAN}}
-          echo ${{steps.deployif.outputs.VCCRAN}}
+          echo ${{ steps.buildif.outputs.VCCRAN }}
+          echo ${{ steps.deployif.outputs.VCCRAN }}
           echo "event name is:" ${{ github.event_name }}
           echo "event type is:" ${{ github.event.action }}
           echo "event workflow_run event is:" ${{ github.event.workflow_run.event }}
