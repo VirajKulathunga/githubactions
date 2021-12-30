@@ -32,6 +32,7 @@ jobs:
 
       - name: Print Log
         run: |
+          echo ${{ env.VCCRAN }}
           echo "event name is:" ${{ github.event_name }}
           echo "event type is:" ${{ github.event.action }}
           echo "event workflow_run event is:" ${{ github.event.workflow_run.event }}
@@ -44,6 +45,7 @@ jobs:
     steps:
       - name: Print Log
         run: |
+          echo ${{ env.VCCRAN }}
           echo "$GITHUB_REF"
           echo "$GITHUB_REF_NAME"
           echo "$GITHUB_WORKFLOW"
