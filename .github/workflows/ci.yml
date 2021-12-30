@@ -32,8 +32,6 @@ jobs:
 
       - name: Print Log
         run: |
-          echo "VCCRAN name is: $VCCRAN"
-          echo "VCCRAN name is:" ${{ VCCRAN }}
           echo "event name is:" ${{ github.event_name }}
           echo "event type is:" ${{ github.event.action }}
           echo "event workflow_run event is:" ${{ github.event.workflow_run.event }}
