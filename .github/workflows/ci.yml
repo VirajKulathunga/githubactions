@@ -14,17 +14,18 @@ on:
 jobs:
   pre-build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Build IF
         if: |-
             !(github.event_name == 'workflow_run' && github.event.workflow_run.name == 'Build')
-          env:
-            VCCRAN: 'Build'
+        env:
+          VCCRAN: 'Build'
 
       - name: Deploy IF
           if: |-
             !(github.event_name == 'workflow_run' && github.event.workflow_run.name == 'Deploy')
-            env:
+          env:
             VCCRAN: 'Deploy'
 
       - name: Print Log
