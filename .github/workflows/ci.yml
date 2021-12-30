@@ -23,8 +23,8 @@ jobs:
           echo "$GITHUB_EVENT_NAME"
           echo "event name is:" ${{ github.event_name }}
           echo "event type is:" ${{ github.event.action }}
-          echo "event repository name is:" ${{ github.event.repository.name }}
-          echo "event repository full_name is:" ${{ github.event.repository.full_name }}
+          echo "event workflow_run event is:" ${{ github.event.workflow_run.event }}
+          echo "event workflow_run name is:" ${{ github.event.workflow_run.name }}
 
       - uses: actions/checkout@v2
 
