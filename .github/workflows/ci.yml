@@ -23,6 +23,10 @@ jobs:
           echo "$GITHUB_EVENT_NAME"
           echo "event name is:" ${{ github.event_name }}
           echo "event type is:" ${{ github.event.action }}
+          echo "event repository is:" ${{ github.event.repository }}
+          echo "event organization is:" ${{ github.event.organization }}
+          echo "event installation is:" ${{ github.event.installation }}
+          echo "event sender is:" ${{ github.event.sender }}
 
       - uses: actions/checkout@v2
 
